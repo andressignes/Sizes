@@ -1,4 +1,5 @@
 package com.asignes.sizes.view;
 
-public class View {
+public interface View {
+  public android.content.Context getContext();
 }
