@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.asignes.sizes.R;
 import com.asignes.sizes.model.entities.TvMovie;
-import com.asignes.sizes.view.OnItemClickListener;
+import com.asignes.sizes.view.HackVGClickListener;
 import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
   //    private final List<TvMovie> movieList;
-  public OnItemClickListener onItemClickListener;
+  public HackVGClickListener hackVGClickListener;
   private Context context;
 
   public MoviesAdapter(List<TvMovie> movieList) {
@@ -23,8 +23,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     //        this.movieList = movieList;
   }
 
-  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-    this.onItemClickListener = onItemClickListener;
+  public void sethackVGClickListener(HackVGClickListener hackVGClickListener) {
+    this.hackVGClickListener = hackVGClickListener;
   }
 
   @Override
@@ -35,14 +35,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     this.context = viewGroup.getContext();
 
-    return new MovieViewHolder(rowView, onItemClickListener);
+    return new MovieViewHolder(rowView, hackVGClickListener);
   }
 
   @Override
   public void onBindViewHolder(MovieViewHolder holder, int position) {
 
     holder.titleTextView.setText("Movie " + position);
-    holder.authorTextView.setText("AwesomeAuthor");
+    // holder.authorTextView.setText("AwesomeAuthor");
   }
 
   @Override
@@ -54,25 +54,26 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
 class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-  private final OnItemClickListener onClickListener;
+  private final HackVGClickListener onClick;
   TextView titleTextView;
-  TextView authorTextView;
+  //  TextView authorTextView;
   ImageView coverImageView;
 
-  public MovieViewHolder(View itemView, OnItemClickListener onClickListener) {
+  public MovieViewHolder(View itemView, HackVGClickListener clickListener) {
 
     super(itemView);
 
     titleTextView = (TextView) itemView.findViewById(R.id.item_movie_title);
-    authorTextView = (TextView) itemView.findViewById(R.id.item_movie_author);
+    //    authorTextView = (TextView) itemView.findViewById(R.id.item_movie_author);
     coverImageView = (ImageView) itemView.findViewById(R.id.item_movie_cover);
-    coverImageView.setOnClickListener(this);
-    this.onClickListener = onClickListener;
+    //        coverImageView.setOnClickListener(this);
+
+    this.onClick = clickListener;
   }
 
   @Override
   public void onClick(View v) {
 
-    onClickListener.onClick(v, getPosition());
+    onClick.onClick(v, getPosition());
   }
 }

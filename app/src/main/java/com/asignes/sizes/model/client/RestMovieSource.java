@@ -15,34 +15,7 @@ public class RestMovieSource implements MediaDataSource {
 
   public static RestMovieSource INSTANCE;
   private final TheMovieDBApi moviesDBApi;
-
-  private RestMovieSource() {
-
-    RestAdapter parkappRest = new RestAdapter.Builder()
-        .setEndpoint(Constants.MOVIE_DB_HOST)
-        .setLogLevel(RestAdapter.LogLevel.FULL)
-        .build();
-
-    moviesDBApi = parkappRest.create(TheMovieDBApi.class);
-
-  }
-
-  public static RestMovieSource getInstance() {
-
-    if (INSTANCE == null)
-      INSTANCE = new RestMovieSource();
-
-    return INSTANCE;
-  }
-
-  @Override
-  public void getShows() {
-
-    //        moviesDBApi.getPopularShows(Constants.API_KEY, mediaResponseCallback);
-  }
-
-
-  Callback<PopularMoviesResponse> mediaResponseCallback = new Callback<PopularMoviesResponse>() {
+  Callback<PopularMoviesResponse> moviesResponseCallback = new Callback<PopularMoviesResponse>() {
     @Override
     public void success(PopularMoviesResponse popularMoviesResponse, Response response) {
 
@@ -56,11 +29,32 @@ public class RestMovieSource implements MediaDataSource {
     }
   };
 
+  private RestMovieSource() {
+
+    RestAdapter parkappRest = new RestAdapter.Builder().setEndpoint(Constants.MOVIE_DB_HOST)
+        .setLogLevel(RestAdapter.LogLevel.FULL)
+        .build();
+
+    moviesDBApi = parkappRest.create(TheMovieDBApi.class);
+  }
+
+  public static RestMovieSource getInstance() {
+
+    if (INSTANCE == null) INSTANCE = new RestMovieSource();
+
+    return INSTANCE;
+  }
+
+  @Override
+  public void getShows() {
+
+    //        moviesDBApi.getPopularShows(Constants.API_KEY, moviesResponseCallback);
+  }
+
   @Override
   public void getMovies() {
 
-    moviesDBApi.getPopularMovies(Constants.API_KEY, mediaResponseCallback);
-
+    moviesDBApi.getPopularMovies(Constants.API_KEY, moviesResponseCallback);
   }
 }
 

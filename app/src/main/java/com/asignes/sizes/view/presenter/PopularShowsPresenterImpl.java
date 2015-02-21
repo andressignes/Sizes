@@ -24,6 +24,7 @@ public class PopularShowsPresenterImpl implements PopularMediaPresenter {
         new GetMoviesUsecaseController(this, GetPopularMediaUsecase.TV_MOVIES);
 
     getPopularShows.execute();
+    popularMoviesView.showLoading();
   }
 
   @Override
@@ -33,7 +34,8 @@ public class PopularShowsPresenterImpl implements PopularMediaPresenter {
 
   @Override
   public void onPopularMoviesReceived(List<TvMovie> popularMovies) {
-
+    popularMoviesView.hideLoading();
+    popularMoviesView.showMovies(popularMovies);
     Log.d("[DEBUG]",
         "PopularShowsPresenterImpl onPopularMoviesReceived - movies: " + popularMovies);
   }
