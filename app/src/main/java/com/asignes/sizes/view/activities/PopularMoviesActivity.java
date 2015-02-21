@@ -9,6 +9,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.asignes.sizes.R;
 import com.asignes.sizes.model.entities.TvMovie;
+import com.asignes.sizes.view.adapters.MoviesAdapter;
 import com.asignes.sizes.view.mvp_views.PopularMoviesView;
 import com.asignes.sizes.view.presenter.PopularMediaPresenter;
 import com.asignes.sizes.view.presenter.PopularShowsPresenterImpl;
@@ -25,7 +26,7 @@ public class PopularMoviesActivity extends Activity implements PopularMoviesView
     setContentView(R.layout.activity_main);
     ButterKnife.inject(this);
     popularMoviesRecycler.setLayoutManager(new GridLayoutManager(this, COLUMNS));
-    popularMoviesRecycler.setAdapter(new MovieAdapter(null));
+    popularMoviesRecycler.setAdapter(new MoviesAdapter(null));
 
     popularMediaPresenter = new PopularShowsPresenterImpl(this);
   }
