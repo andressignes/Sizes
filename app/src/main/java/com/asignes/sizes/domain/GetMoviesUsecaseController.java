@@ -65,7 +65,6 @@ public class GetMoviesUsecaseController implements GetPopularMediaUsecase {
         break;
 
       case GetPopularMediaUsecase.TV_SHOWS:
-        popularMediaPresenter.onPopularShowsReceived(popularShows);
         break;
     }
 
@@ -82,7 +81,7 @@ public class GetMoviesUsecaseController implements GetPopularMediaUsecase {
         break;
 
       case GetPopularMediaUsecase.TV_SHOWS:
-        popularMediaPresenter.onPopularShowsReceived(popularShows);
+        //        popularMediaPresenter.onPopularShowsReceived(popularShows);
         getPopularShows();
         break;
     }
