@@ -16,6 +16,7 @@ import com.asignes.sizes.view.adapters.MoviesAdapter;
 import com.asignes.sizes.view.mvp_views.PopularMoviesView;
 import com.asignes.sizes.view.presenter.PopularMediaPresenter;
 import com.asignes.sizes.view.presenter.PopularShowsPresenterImpl;
+import com.asignes.sizes.view.utils.RecyclerInsetsDecoration;
 import java.util.List;
 
 public class PopularMoviesActivity extends Activity
@@ -31,6 +32,7 @@ public class PopularMoviesActivity extends Activity
     setContentView(R.layout.activity_main);
     ButterKnife.inject(this);
     popularMoviesRecycler.setLayoutManager(new GridLayoutManager(this, COLUMNS));
+    popularMoviesRecycler.addItemDecoration(new RecyclerInsetsDecoration(this));
     popularMoviesRecycler.setAdapter(new MoviesAdapter(null));
 
     popularMediaPresenter = new PopularShowsPresenterImpl(this);

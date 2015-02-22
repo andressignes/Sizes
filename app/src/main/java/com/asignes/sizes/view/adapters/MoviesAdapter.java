@@ -42,7 +42,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
   public void onBindViewHolder(MovieViewHolder holder, int position) {
 
     holder.titleTextView.setText("Movie " + position);
-    // holder.authorTextView.setText("AwesomeAuthor");
   }
 
   @Override
@@ -56,7 +55,7 @@ class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
   private final HackVGClickListener onClick;
   TextView titleTextView;
-  //  TextView authorTextView;
+  TextView authorTextView;
   ImageView coverImageView;
 
   public MovieViewHolder(View itemView, HackVGClickListener clickListener) {
@@ -64,7 +63,6 @@ class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickLis
     super(itemView);
 
     titleTextView = (TextView) itemView.findViewById(R.id.item_movie_title);
-    //    authorTextView = (TextView) itemView.findViewById(R.id.item_movie_author);
     coverImageView = (ImageView) itemView.findViewById(R.id.item_movie_cover);
     //        coverImageView.setOnClickListener(this);
 
